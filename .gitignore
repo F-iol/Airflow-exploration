@@ -1,0 +1,5 @@
+.venv/
+logs/
+.env
+docker-compose.yaml
+config/airflow.cfg
