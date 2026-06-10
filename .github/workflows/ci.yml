@@ -1,0 +1,37 @@
+name: Airflow DAGs CI
+
+on:
+  push:
+    branches:
+  pull_request:
+    branches:
+
+jobs:
+  validate-dags:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install apache-airflow
+
+    - name: Run DAG Integrity Test
+      run: |
+        python -c "
+        from airflow.models import DagBag
+        dagbag = DagBag(dag_folder='dags', include_examples=False)
+        if len(dagbag.import_errors) > 0:
+            print('Problems found in Dags:')
+            print(dagbag.import_errors)
+            exit(1)
+        print('All good')
+        "
