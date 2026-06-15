@@ -15,7 +15,7 @@ def incremental_load_dag():
 
     @task.python
     def incremental_data_fetch(**kwargs):
-        print(f'Fetching data from {kwargs['data_interval_start']} to {kwargs['data_interval_end']}')
+        print(f"Fetching data from {kwargs['data_interval_start']} to {kwargs['data_interval_end']}")
 
     @task.bash
     def incremental_data_process():
