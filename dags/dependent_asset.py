@@ -1,11 +1,15 @@
-from airflow.sdk import dag,task,asset
+from airflow.sdk import dag,task,asset,Asset
 import pendulum
 import os
-from dags.dag_asset import fetch_data
+#from dags.dag_asset import fetch_data
 
+upstream_asset = Asset(
+        name='fetch_data',
+        uri='/opt/airflow/logs/data/data_extract.txt'
+    )
 
 @asset(
-    schedule=fetch_data,
+    schedule=upstream_asset,
     uri='/opt/airflow/logs/data/data_proccessed.txt',
     name='process_data'
 )
