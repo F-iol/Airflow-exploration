@@ -13,6 +13,6 @@ def fetch_data(self):
     os.makedirs(os.path.dirname(self.uri),exist_ok=True)
 
     with open(self.uri,'w') as f:
-        f.write(f'Data fetched on {pendulum.now('Europe/Warsaw')}\n')
+        f.write(f"Data fetched on {pendulum.now('Europe/Warsaw')}\n")
     
     print(f'Data written to {self.uri}') 

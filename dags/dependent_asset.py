@@ -14,6 +14,6 @@ def process_data(self):
     os.makedirs(os.path.dirname(self.uri),exist_ok=True)
 
     with open(self.uri,'w') as f:
-        f.write(f'Data processed successfully at {pendulum.now('Europe/Warsaw')}')
+        f.write(f"Data processed successfully at {pendulum.now('Europe/Warsaw')}")
     
     print(f'Data written to {self.uri}')
