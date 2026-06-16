@@ -1,7 +1,7 @@
 from airflow.sdk import dag,task,asset
 import pendulum
 import os
-from asset import fetch_data
+from dag_asset import fetch_data
 
 
 @asset(
